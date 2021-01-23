@@ -1,13 +1,10 @@
-const http =  require('http');
-const hostname = 'localhost';
-const port = process.env.PORT || 5000;
+const express = require('express');
+const app = express();
+const path = require('path');
+const port = 3000;
 
-const server = http.createServer( (req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Hello World');
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-server.listen(port, hostname, () =>{
-    console.log(`Server running at http://${hostname}:${port}/`);
-});
+app.listen(port, () => console.log(`url-shortener listening on port ${port}!`));
